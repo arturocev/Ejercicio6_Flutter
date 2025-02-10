@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                label: Text("Numero de personas"),
+                label: Text("Número de personas"),
               ),
             ),
             ),
