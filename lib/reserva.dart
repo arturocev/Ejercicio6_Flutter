@@ -1,5 +1,6 @@
 class Reserva {
-  static final String nombreReserva = "";
-  static final String fecha = "";
-  static final int numeroPersonas = 0;
+  static String nombreReserva = "";
+  static String fecha = "";
+  static int numeroPersonas = 0;
+  static List<dynamic> reservas = [];
 }

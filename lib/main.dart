@@ -1,3 +1,6 @@
+
+import 'package:ejercicio_6/listado.dart';
+import 'package:ejercicio_6/reserva.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,6 +34,30 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  late TextEditingController controladorNombre;
+  late TextEditingController controladorFecha;
+  late TextEditingController controladorNumeroPersonas;
+
+  void initState()
+  {
+    controladorFecha = TextEditingController();
+    controladorNombre = TextEditingController();
+    controladorNumeroPersonas = TextEditingController();
+    super.initState();
+  }
+
+  void aniadirReserva() {
+    Reserva.nombreReserva = controladorNombre.text;
+    Reserva.fecha = controladorFecha.text;
+    Reserva.numeroPersonas = int.parse(controladorNumeroPersonas.text);
+
+    Reserva.reservas.add(Reserva.nombreReserva);
+    Reserva.reservas.add(Reserva.fecha);
+    Reserva.reservas.add(Reserva.numeroPersonas);
+
+    print(Reserva.reservas);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +71,29 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           children: [
-            Text(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
               "Añadir nueva reserva",
               style: TextStyle(
                 fontSize: 30,
               ),
               ),
-            Padding(
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
               padding: EdgeInsets.only(top: 20),
               child: SizedBox(
               width: 300,
               child: TextField(
+              controller: controladorNombre,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Nombre de la persona"),
@@ -62,12 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ),
             ),
-
-            Padding(
+              ],
+            ),
+            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
               padding: EdgeInsets.only(top: 20),
               child: SizedBox(
               width: 300,
               child: TextField(
+                controller: controladorFecha,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Fecha"),
@@ -75,11 +121,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ),
             ),
-            Padding(
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
               padding: EdgeInsets.only(top: 20, bottom: 20),
               child: SizedBox(
               width: 300,
               child: TextField(
+                controller: controladorNumeroPersonas,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Número de personas"),
@@ -87,10 +140,36 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ),
             ),
-            FloatingActionButton.extended(
-              onPressed: () {},
-              label: Text("Añadir reserva"),
-              ),
+              ],
+            ),
+            
+            Padding(
+              padding: 
+            EdgeInsets.only(top: 30),
+            child:
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FloatingActionButton.extended(onPressed: () {
+                   Navigator.push(context,MaterialPageRoute(builder: (context) => Listado()));
+                }, 
+                label: Text("Ver listado de reservas"),
+                heroTag: "btn1",
+                )
+              ],
+            ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: FloatingActionButton.extended(onPressed: () {
+              aniadirReserva();
+              
+            },
+            label: Text("Añadir Reserva"),
+            heroTag: "btn2",
+            ),
+            ),
           ],
         ),
       ),
