@@ -16,6 +16,23 @@ class _ListadoState extends State<Listado> {
         backgroundColor: Colors.blue,
         title: Text("Listado reservas"),
       ),
+      body: ListView.separated(
+    padding: const EdgeInsets.all(8),
+    itemCount: Reserva.nombresReservas.length,
+    itemBuilder: (BuildContext context, int index) {
+      return Container(
+        /*
+        height: 50,
+        child: Center(child: Text('${Reserva.reservas[index]} ha reservado a fecha ' + '${Reserva.reservas[index + 1]}')),
+        */
+        child: ListTile(
+          title: Text("${Reserva.nombresReservas[index]}"),
+          subtitle: Text("${Reserva.fechasReservas[index]}"),
+        ),
+      );
+    },
+    separatorBuilder: (BuildContext context, int index) => const Divider(),
+  ),
     );
   }
 }

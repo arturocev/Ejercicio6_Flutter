@@ -51,11 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Reserva.fecha = controladorFecha.text;
     Reserva.numeroPersonas = int.parse(controladorNumeroPersonas.text);
 
-    Reserva.reservas.add(Reserva.nombreReserva);
-    Reserva.reservas.add(Reserva.fecha);
-    Reserva.reservas.add(Reserva.numeroPersonas);
-
-    print(Reserva.reservas);
+    Reserva.nombresReservas.add(Reserva.nombreReserva);
+    Reserva.fechasReservas.add(Reserva.fecha);
   }
 
 
